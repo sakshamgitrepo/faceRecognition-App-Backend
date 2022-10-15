@@ -26,6 +26,9 @@ app.get("/", (req, res) => {
 // ==========================================SIGN IN==========================================
 app.post("/signin", (req, res) => {
   const { email, password } = req.body;
+  if (!email || !password) {
+		return res.status(400).json('incorrect form submission');
+	}
  db.select('email', 'hash').from('login')
  .where('email', '=', email)
  .then(data =>{
@@ -45,6 +48,9 @@ app.post("/signin", (req, res) => {
 // ============================================REGISTER=========================================
 app.post("/register", (req, res) => {
   const { name, email, password } = req.body;
+  if (!email || !name || !password) {
+		return res.status(400).json('incorrect form submission');
+	}
   const hash = bcrypt.hashSync(password);
   db.transaction((trx) => {
     trx
@@ -64,7 +70,7 @@ app.post("/register", (req, res) => {
           })
           .then((user) => {
             res.json(user[0]);
-          });
+          })
       })
       .then(trx.commit)
       .catch(trx.rollback);
