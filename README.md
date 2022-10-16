@@ -7,6 +7,6 @@
 
 You can grab Clarifai API key [here](https://www.clarifai.com/)
 
-Here is Frontend code of this Project
+Here is Frontend code of this Project : 
 https://github.com/sakshamgitrepo/faceRecognition-App-frontend
 
